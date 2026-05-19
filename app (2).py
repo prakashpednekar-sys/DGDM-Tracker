@@ -32,14 +32,6 @@ section[data-testid="stSidebar"] * {
     color: #E8E6E0 !important;
 }
 
-section[data-testid="stSidebar"] .stSelectbox label,
-section[data-testid="stSidebar"] .stDateInput label {
-    color: #9A97B0 !important;
-    font-size: 11px !important;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
 section[data-testid="stSidebar"] h2 {
     color: #E8E6E0 !important;
     font-size: 13px !important;
@@ -47,6 +39,58 @@ section[data-testid="stSidebar"] h2 {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-top: 1.5rem !important;
+}
+
+section[data-testid="stSidebar"] label {
+    color: #9A97B0 !important;
+    font-size: 11px !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+section[data-testid="stSidebar"] .stSelectbox > div > div,
+section[data-testid="stSidebar"] .stSelectbox > div > div > div {
+    background-color: #2C2C4A !important;
+    border: 1px solid #3D3D6B !important;
+    border-radius: 8px !important;
+    color: #FFFFFF !important;
+}
+
+section[data-testid="stSidebar"] .stSelectbox span,
+section[data-testid="stSidebar"] .stSelectbox p,
+section[data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] span {
+    color: #FFFFFF !important;
+}
+
+section[data-testid="stSidebar"] input,
+section[data-testid="stSidebar"] .stDateInput > div > div > input {
+    background-color: #2C2C4A !important;
+    border: 1px solid #3D3D6B !important;
+    border-radius: 8px !important;
+    color: #FFFFFF !important;
+}
+
+section[data-testid="stSidebar"] .stDateInput > div > div {
+    background-color: #2C2C4A !important;
+    border: 1px solid #3D3D6B !important;
+    border-radius: 8px !important;
+}
+
+section[data-testid="stSidebar"] svg {
+    fill: #9A97B0 !important;
+    stroke: #9A97B0 !important;
+}
+
+section[data-testid="stSidebar"] button {
+    background-color: #2C2C4A !important;
+    border: 1px solid #3D3D6B !important;
+    color: #FFFFFF !important;
+    border-radius: 8px !important;
+}
+
+section[data-testid="stSidebar"] button:hover {
+    background-color: #3D3D6B !important;
+    border-color: #5A5A9A !important;
 }
 
 .metric-card {
@@ -408,6 +452,94 @@ RULES = [
         "est_min": 5,
         "owner": "Dipika",
         "sheet": "UOM_Update_Define_List"
+    },
+    {
+        "id": "R21",
+        "day": "Thursday",
+        "name": "Schedule–habit forming–composition classification combination validation",
+        "why": "An incorrect schedule+habit forming+composition class combination (e.g. non-schedule on a known narcotic) bypasses pharmacist controls and exposes patients to dangerous drugs without supervision.",
+        "tags": ["Patient safety", "Regulatory"],
+        "priority": "Critical",
+        "est_min": 8,
+        "owner": "Mukesh/Sneha",
+        "sheet": "schedule-comp-class-habit-forming"
+    },
+    {
+        "id": "R22",
+        "day": "Thursday",
+        "name": "Same Rx value across same molecule combination (all strengths, excl. injectables)",
+        "why": "Same molecule in different strengths must have the same Rx value. Inconsistency means one variant is dispensed OTC while another requires prescription — patient safety gap.",
+        "tags": ["Patient safety", "Regulatory"],
+        "priority": "Critical",
+        "est_min": 7,
+        "owner": "Mukesh",
+        "sheet": "prescription-required-online_comp."
+    },
+    {
+        "id": "R23",
+        "day": "Thursday",
+        "name": "Composition with (NA) strength & UOM → Rx=1",
+        "why": "Compositions with NA strength/UOM are often undocumented potent molecules. Defaulting Rx=0 on these allows unregulated sale of potentially dangerous formulations.",
+        "tags": ["Patient safety"],
+        "priority": "Critical",
+        "est_min": 5,
+        "owner": "Mukesh",
+        "sheet": "prescription-required-online_comp(na)"
+    },
+    {
+        "id": "R24",
+        "day": "Thursday",
+        "name": "AYUSH business head → Schedule Non-Schedule, E, or E1 only",
+        "why": "AYUSH products are regulated separately from allopathic drugs. Assigning Schedule H/H1/X to AYUSH items creates false dispensing restrictions and confuses the pharmacist workflow.",
+        "tags": ["Regulatory"],
+        "priority": "High",
+        "est_min": 4,
+        "owner": "Mukesh/Sneha",
+        "sheet": "BH_AYUSH_Then_SH_NonSH_and_E1_and_E"
+    },
+    {
+        "id": "R25",
+        "day": "Friday",
+        "name": "Composition classification 'Antibiotic' → Schedule H or H1 cross-check with Rx=1",
+        "why": "Weekly cross-check catch-all: antibiotics that slipped through Mon/Thu checks. Any antibiotic without both Schedule H/H1 AND Rx=1 is a live compliance breach before the weekend.",
+        "tags": ["Patient safety", "Regulatory"],
+        "priority": "Critical",
+        "est_min": 7,
+        "owner": "Mukesh",
+        "sheet": "CompClass_Antib_Then_Rx_yes"
+    },
+    {
+        "id": "R26",
+        "day": "Friday",
+        "name": "All parenterals → Schedule H, H1, G, G+H, or Non-Schedule (caution advised)",
+        "why": "Injectables/infusions/vaccines must fall in a valid schedule. A blank or wrong schedule on a parenteral before weekend means no pharmacist can legally dispense it correctly.",
+        "tags": ["Patient safety", "Regulatory"],
+        "priority": "Critical",
+        "est_min": 6,
+        "owner": "Mukesh/Sneha",
+        "sheet": "PrdtForm_Injectibles_then_defined_SH"
+    },
+    {
+        "id": "R27",
+        "day": "Friday",
+        "name": "Molecule-only composition → composition-classification must be single & consistent",
+        "why": "A molecule used alone or in combination cannot have multiple composition classifications in the master table. Inconsistency cascades to hundreds of SKUs with wrong Rx, schedule, and habit-forming flags.",
+        "tags": ["Patient safety", "Data integrity"],
+        "priority": "Critical",
+        "est_min": 8,
+        "owner": "Mukesh",
+        "sheet": "composition-classification_Molecule"
+    },
+    {
+        "id": "R28",
+        "day": "Friday",
+        "name": "Prescription by field → valid values when Rx=1 (Customer, BAMS, MBBS)",
+        "why": "If Rx=1 but 'Prescription by' is blank or has an invalid value, the platform cannot enforce who can write the prescription — a direct regulatory and liability gap.",
+        "tags": ["Regulatory"],
+        "priority": "High",
+        "est_min": 5,
+        "owner": "Shraddha",
+        "sheet": "Rx-(Rx=1, prescription by= Customer, BAMS, MBBS)"
     }
 ]
 
@@ -431,7 +563,7 @@ def get_rule_key(rule_id, date_key):
 
 data = load_data()
 
-ALL_DAYS = ["Monday", "Tuesday", "Wednesday", "Every 10 Days"]
+ALL_DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Every 10 Days"]
 
 with st.sidebar:
     st.markdown("## 🧬 DGDM Tracker")
